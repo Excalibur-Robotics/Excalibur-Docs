@@ -3,58 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Documentation</title>
+  <title>My Documentation | Home</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
+    <button id="menuToggle" class="menu-btn">☰</button>
     <h1>📘 My Documentation</h1>
-    <input type="text" placeholder="Search..." id="searchBox" />
+    <div class="header-controls">
+      <input type="text" placeholder="Search..." id="searchBox" />
+      <button id="themeToggle" class="theme-btn">🌙</button>
+    </div>
   </header>
 
   <div class="container">
     <nav class="sidebar">
       <h2>Contents</h2>
-      <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#getting-started">Getting Started</a></li>
-        <li><a href="#usage">Usage</a></li>
-        <li><a href="#examples">Examples</a></li>
-        <li><a href="#api">API Reference</a></li>
-        <li><a href="#faq">FAQ</a></li>
+      <ul id="sidebarLinks">
+        <li><a href="index.html" class="active">🏠 Introduction</a></li>
+
+        <li class="dropdown">
+          <button class="dropbtn">🚀 Getting Started ▾</button>
+          <ul class="dropdown-content">
+            <li><a href="getting-started.html#installation">Installation</a></li>
+            <li><a href="getting-started.html#setup">Setup</a></li>
+            <li><a href="getting-started.html#configuration">Configuration</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <button class="dropbtn">💡 Examples ▾</button>
+          <ul class="dropdown-content">
+            <li><a href="examples.html#basic">Basic Example</a></li>
+            <li><a href="examples.html#advanced">Advanced Example</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <button class="dropbtn">🧭 API Reference ▾</button>
+          <ul class="dropdown-content">
+            <li><a href="api.html#methods">Methods</a></li>
+            <li><a href="api.html#endpoints">Endpoints</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
 
     <main class="content">
-      <section id="introduction">
+      <section id="intro">
         <h2>Introduction</h2>
-        <p>Welcome to the documentation! This site helps you understand how to use our project effectively.</p>
-      </section>
-
-      <section id="getting-started">
-        <h2>Getting Started</h2>
-        <p>To begin, install the package and follow the setup guide below.</p>
-        <pre><code>npm install my-package</code></pre>
-      </section>
-
-      <section id="usage">
-        <h2>Usage</h2>
-        <p>Here's how to use the main features of the project.</p>
-      </section>
-
-      <section id="examples">
-        <h2>Examples</h2>
-        <p>Explore practical examples below to get a better understanding of the tool.</p>
-      </section>
-
-      <section id="api">
-        <h2>API Reference</h2>
-        <p>Detailed API methods and parameters.</p>
-      </section>
-
-      <section id="faq">
-        <h2>FAQ</h2>
-        <p>Commonly asked questions and their answers.</p>
+        <p>
+          Welcome to your new documentation site! Try typing in the search bar to filter links in real time.  
+          You can toggle dark mode 🌙 / ☀️ and use the hamburger menu ☰ on mobile.
+        </p>
       </section>
     </main>
   </div>
@@ -62,5 +63,7 @@
   <footer>
     <p>© 2025 My Documentation. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
