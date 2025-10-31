@@ -1,69 +1,653 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Documentation | Home</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #252526;
+            --bg-tertiary: #2d2d30;
+            --text-primary: #cccccc;
+            --text-secondary: #858585;
+            --accent: #0e639c;
+            --accent-hover: #1177bb;
+            --border: #3e3e42;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .container {
+            display: flex;
+            margin-top: 60px;
+            height: calc(100vh - 60px);
+        }
+
+        .sidebar {
+            width: 300px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 1.5rem 0;
+        }
+
+        .sidebar-section {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-title {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            list-style: none;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            user-select: none;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .nav-link.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .nav-link .arrow {
+            margin-right: 0.5rem;
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+            width: 12px;
+        }
+
+        .nav-link .arrow.rotated {
+            transform: rotate(90deg);
+        }
+
+        .nav-link .no-arrow {
+            margin-left: 12px;
+        }
+
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .submenu.open {
+            max-height: 500px;
+        }
+
+        .submenu .nav-link {
+            padding-left: 3rem;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 3rem;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .content p {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .content code {
+            background: var(--bg-tertiary);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #ce9178;
+        }
+
+        .content pre {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .note {
+            background: rgba(14, 99, 156, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .note strong {
+            color: var(--accent);
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -300px;
+                transition: left 0.3s;
+                z-index: 999;
+                height: calc(100vh - 60px);
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--text-primary);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .search-box {
+                display: none;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <button id="menuToggle" class="menu-btn">☰</button>
-    <h1>📘 My Documentation</h1>
-    <div class="header-controls">
-      <input type="text" placeholder="Search..." id="searchBox" />
-      <button id="themeToggle" class="theme-btn">🌙</button>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <h1>Documentation</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search documentation..." onkeyup="searchDocs()">
+            <span class="search-icon">🔍</span>
+        </div>
     </div>
-  </header>
 
-  <div class="container">
-    <nav class="sidebar">
-      <h2>Contents</h2>
-      <ul id="sidebarLinks">
-        <li><a href="index.html" class="active">🏠 Introduction</a></li>
+    <div class="container">
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Getting Started</div>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link active" onclick="loadContent('introduction')" data-page="introduction">
+                            <span class="no-arrow"></span>
+                            Introduction
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContent('installation')" data-page="installation">
+                            <span class="no-arrow"></span>
+                            Installation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContent('quickstart')" data-page="quickstart">
+                            <span class="no-arrow"></span>
+                            Quick Start
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-        <li class="dropdown">
-          <button class="dropbtn">🚀 Getting Started ▾</button>
-          <ul class="dropdown-content">
-            <li><a href="getting-started.html#installation">Installation</a></li>
-            <li><a href="getting-started.html#setup">Setup</a></li>
-            <li><a href="getting-started.html#configuration">Configuration</a></li>
-          </ul>
-        </li>
+            <div class="sidebar-section">
+                <div class="sidebar-title">User Guide</div>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="toggleSubmenu(this)">
+                            <span class="arrow">▶</span>
+                            Interface
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="loadContent('interface-overview')" data-page="interface-overview">Overview</a></li>
+                            <li><a class="nav-link" onclick="loadContent('interface-navigation')" data-page="interface-navigation">Navigation</a></li>
+                            <li><a class="nav-link" onclick="loadContent('interface-customization')" data-page="interface-customization">Customization</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="toggleSubmenu(this)">
+                            <span class="arrow">▶</span>
+                            Modeling
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="loadContent('modeling-basics')" data-page="modeling-basics">Basics</a></li>
+                            <li><a class="nav-link" onclick="loadContent('modeling-advanced')" data-page="modeling-advanced">Advanced Techniques</a></li>
+                            <li><a class="nav-link" onclick="loadContent('modeling-modifiers')" data-page="modeling-modifiers">Modifiers</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="toggleSubmenu(this)">
+                            <span class="arrow">▶</span>
+                            Rendering
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="loadContent('rendering-setup')" data-page="rendering-setup">Setup</a></li>
+                            <li><a class="nav-link" onclick="loadContent('rendering-lighting')" data-page="rendering-lighting">Lighting</a></li>
+                            <li><a class="nav-link" onclick="loadContent('rendering-materials')" data-page="rendering-materials">Materials</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
-        <li class="dropdown">
-          <button class="dropbtn">💡 Examples ▾</button>
-          <ul class="dropdown-content">
-            <li><a href="examples.html#basic">Basic Example</a></li>
-            <li><a href="examples.html#advanced">Advanced Example</a></li>
-          </ul>
-        </li>
+            <div class="sidebar-section">
+                <div class="sidebar-title">API Reference</div>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="toggleSubmenu(this)">
+                            <span class="arrow">▶</span>
+                            Core API
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="loadContent('api-overview')" data-page="api-overview">Overview</a></li>
+                            <li><a class="nav-link" onclick="loadContent('api-functions')" data-page="api-functions">Functions</a></li>
+                            <li><a class="nav-link" onclick="loadContent('api-classes')" data-page="api-classes">Classes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-        <li class="dropdown">
-          <button class="dropbtn">🧭 API Reference ▾</button>
-          <ul class="dropdown-content">
-            <li><a href="api.html#methods">Methods</a></li>
-            <li><a href="api.html#endpoints">Endpoints</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+        <main class="content" id="content">
+            <h1>Welcome to the Documentation</h1>
+            
+            <p>This documentation site provides comprehensive information about using our software. Use the navigation menu on the left to browse different sections.</p>
 
-    <main class="content">
-      <section id="intro">
-        <h2>Introduction</h2>
-        <p>
-          Welcome to your new documentation site! Try typing in the search bar to filter links in real time.  
-          You can toggle dark mode 🌙 / ☀️ and use the hamburger menu ☰ on mobile.
-        </p>
-      </section>
-    </main>
-  </div>
+            <div class="note">
+                <strong>Note:</strong> This is a template documentation site. You can customize the content, styling, and structure to fit your needs.
+            </div>
 
-  <footer>
-    <p>© 2025 My Documentation. All rights reserved.</p>
-  </footer>
+            <h2>Features</h2>
+            <ul>
+                <li>Responsive sidebar navigation with dropdown menus</li>
+                <li>Dark theme inspired by Blender's documentation</li>
+                <li>Search functionality</li>
+                <li>Mobile-friendly design</li>
+                <li>Clean and modern interface</li>
+            </ul>
 
-  <script src="script.js"></script>
+            <h2>Getting Started</h2>
+            <p>To begin using this documentation:</p>
+            <ol>
+                <li>Browse the navigation menu to find the topic you're interested in</li>
+                <li>Click on any section to expand dropdown menus</li>
+                <li>Use the search box to quickly find specific topics</li>
+                <li>Read through the guides and tutorials</li>
+            </ol>
+
+            <h3>Code Examples</h3>
+            <p>Throughout the documentation, you'll find code examples like this:</p>
+            <pre><code>function example() {
+    console.log("Hello, World!");
+    return true;
+}</code></pre>
+
+            <p>You can also use inline code like <code>const variable = "value";</code> within paragraphs.</p>
+
+            <h2>Need Help?</h2>
+            <p>If you need additional assistance, check out the community forums or contact support.</p>
+
+            <button class="btn" onclick="alert('Button clicked!')">Get Support</button>
+        </main>
+    </div>
+
+    <script>
+        const contentPages = {
+            introduction: `
+                <h1>Introduction</h1>
+                <p>Welcome to our comprehensive documentation. This guide will help you understand and use all features of our software effectively.</p>
+                <h2>What is this software?</h2>
+                <p>Our software is a powerful tool designed to help you accomplish complex tasks with ease. It features an intuitive interface and robust functionality.</p>
+                <div class="note">
+                    <strong>Tip:</strong> Start with the Quick Start guide if you're new to the software.
+                </div>
+            `,
+            installation: `
+                <h1>Installation</h1>
+                <h2>System Requirements</h2>
+                <ul>
+                    <li>Operating System: Windows 10+, macOS 10.15+, or Linux</li>
+                    <li>RAM: 4GB minimum, 8GB recommended</li>
+                    <li>Storage: 500MB free space</li>
+                </ul>
+                <h2>Installation Steps</h2>
+                <ol>
+                    <li>Download the installer from our website</li>
+                    <li>Run the installer and follow the prompts</li>
+                    <li>Launch the application</li>
+                    <li>Complete the initial setup wizard</li>
+                </ol>
+                <pre><code># Linux installation via terminal
+sudo apt-get update
+sudo apt-get install our-software</code></pre>
+            `,
+            quickstart: `
+                <h1>Quick Start Guide</h1>
+                <p>Get up and running in just a few minutes with this quick start guide.</p>
+                <h2>Step 1: Create a New Project</h2>
+                <p>Click on File > New Project or use the keyboard shortcut <code>Ctrl+N</code> (Windows/Linux) or <code>Cmd+N</code> (macOS).</p>
+                <h2>Step 2: Explore the Interface</h2>
+                <p>Familiarize yourself with the main interface components: toolbar, sidebar, and workspace.</p>
+                <h2>Step 3: Create Your First Object</h2>
+                <p>Use the Add menu to create your first object and start experimenting with the tools.</p>
+            `,
+            'interface-overview': `
+                <h1>Interface Overview</h1>
+                <p>The interface is divided into several key areas designed for maximum productivity.</p>
+                <h2>Main Areas</h2>
+                <ul>
+                    <li><strong>Header:</strong> Contains the main menu and search functionality</li>
+                    <li><strong>Sidebar:</strong> Navigation and tool options</li>
+                    <li><strong>Workspace:</strong> Your main working area</li>
+                    <li><strong>Properties Panel:</strong> Adjust settings for selected objects</li>
+                </ul>
+            `,
+            'interface-navigation': `
+                <h1>Navigation</h1>
+                <p>Learn how to efficiently navigate through the interface.</p>
+                <h2>Keyboard Shortcuts</h2>
+                <pre><code>Ctrl+N    - New project
+Ctrl+O    - Open project
+Ctrl+S    - Save project
+Ctrl+Z    - Undo
+Ctrl+Y    - Redo</code></pre>
+            `,
+            'interface-customization': `
+                <h1>Interface Customization</h1>
+                <p>Customize the interface to match your workflow preferences.</p>
+                <h2>Themes</h2>
+                <p>Choose from light, dark, or high-contrast themes in the preferences menu.</p>
+                <h2>Layout</h2>
+                <p>Drag and drop panels to rearrange the workspace layout to your liking.</p>
+            `,
+            'modeling-basics': `
+                <h1>Modeling Basics</h1>
+                <p>Learn the fundamental concepts of 3D modeling.</p>
+                <h2>Basic Shapes</h2>
+                <p>Start with primitive shapes like cubes, spheres, and cylinders.</p>
+                <div class="note">
+                    <strong>Pro Tip:</strong> Use the transform tools to move, rotate, and scale objects.
+                </div>
+            `,
+            'modeling-advanced': `
+                <h1>Advanced Modeling Techniques</h1>
+                <p>Take your modeling skills to the next level with advanced techniques.</p>
+                <h2>Subdivision Modeling</h2>
+                <p>Create smooth, organic shapes using subdivision surfaces.</p>
+                <h2>Boolean Operations</h2>
+                <p>Combine objects using union, difference, and intersection operations.</p>
+            `,
+            'modeling-modifiers': `
+                <h1>Modifiers</h1>
+                <p>Modifiers are powerful tools that allow non-destructive editing of your models.</p>
+                <h2>Common Modifiers</h2>
+                <ul>
+                    <li><strong>Array:</strong> Create multiple copies in a pattern</li>
+                    <li><strong>Mirror:</strong> Create symmetrical geometry</li>
+                    <li><strong>Bevel:</strong> Add beveled edges</li>
+                </ul>
+            `,
+            'rendering-setup': `
+                <h1>Rendering Setup</h1>
+                <p>Configure your render settings for optimal output quality.</p>
+                <h2>Render Engines</h2>
+                <p>Choose between different render engines based on your needs: Realtime, Path Tracer, or Hybrid.</p>
+            `,
+            'rendering-lighting': `
+                <h1>Lighting</h1>
+                <p>Proper lighting is essential for creating realistic renders.</p>
+                <h2>Light Types</h2>
+                <ul>
+                    <li><strong>Point Light:</strong> Omnidirectional light source</li>
+                    <li><strong>Spot Light:</strong> Directional cone of light</li>
+                    <li><strong>Area Light:</strong> Soft, diffused lighting</li>
+                </ul>
+            `,
+            'rendering-materials': `
+                <h1>Materials</h1>
+                <p>Create realistic surface appearances with materials and shaders.</p>
+                <h2>Material Properties</h2>
+                <p>Adjust properties like color, roughness, metallic, and transparency to achieve different looks.</p>
+            `,
+            'api-overview': `
+                <h1>API Overview</h1>
+                <p>The API provides programmatic access to all software features.</p>
+                <h2>Getting Started</h2>
+                <pre><code>import api from 'our-software-api';
+
+const app = new api.Application();
+app.init();</code></pre>
+            `,
+            'api-functions': `
+                <h1>API Functions</h1>
+                <p>Reference guide for all available API functions.</p>
+                <h2>Core Functions</h2>
+                <pre><code>api.create(type, options)
+api.delete(id)
+api.update(id, properties)
+api.render(settings)</code></pre>
+            `,
+            'api-classes': `
+                <h1>API Classes</h1>
+                <p>Object-oriented interface for complex operations.</p>
+                <h2>Main Classes</h2>
+                <ul>
+                    <li><strong>Scene:</strong> Manages the 3D scene</li>
+                    <li><strong>Object:</strong> Base class for all 3D objects</li>
+                    <li><strong>Camera:</strong> Controls viewport and rendering</li>
+                </ul>
+            `
+        };
+
+        function toggleSubmenu(el) {
+            const submenu = el.nextElementSibling;
+            const arrow = el.querySelector('.arrow');
+            
+            if (submenu && submenu.classList.contains('submenu')) {
+                submenu.classList.toggle('open');
+                arrow.classList.toggle('rotated');
+            }
+        }
+
+        function loadContent(page) {
+            const content = document.getElementById('content');
+            
+            if (contentPages[page]) {
+                content.innerHTML = contentPages[page];
+                
+                // Update active state
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === page) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Close sidebar on mobile
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('open');
+                }
+
+                // Scroll to top
+                content.scrollTop = 0;
+            }
+        }
+
+        function searchDocs() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const navLinks = document.querySelectorAll('.nav-link[data-page]');
+            
+            navLinks.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                const parent = link.closest('.nav-item');
+                
+                if (text.includes(input)) {
+                    parent.style.display = 'block';
+                    // Open parent submenu if it's a submenu item
+                    const parentSubmenu = link.closest('.submenu');
+                    if (parentSubmenu) {
+                        parentSubmenu.classList.add('open');
+                        const arrow = parentSubmenu.previousElementSibling.querySelector('.arrow');
+                        if (arrow) arrow.classList.add('rotated');
+                    }
+                } else {
+                    if (!input) {
+                        parent.style.display = 'block';
+                    } else {
+                        // Only hide if it's not a parent of a matching child
+                        const hasMatchingChild = parent.querySelector('.submenu .nav-link[data-page]');
+                        if (!hasMatchingChild || !hasMatchingChild.textContent.toLowerCase().includes(input)) {
+                            parent.style.display = 'none';
+                        }
+                    }
+                }
+            });
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(e.target) && 
+                !menuToggle.contains(e.target) &&
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
