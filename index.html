@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation</title>
+    <title>Excalibur Documentation</title>
     <style>
         * {
             margin: 0;
@@ -42,6 +42,19 @@
             align-items: center;
             justify-content: space-between;
         }
+
+          .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-logo {
+            width: 100px;
+            height: 40px;
+            object-fit: contain;
+        }
+
 
         .header h1 {
             font-size: 1.5rem;
@@ -290,7 +303,10 @@
 <body>
     <div class="header">
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-        <h1>Documentation</h1>
+        <div class="header-content">
+            <img src="excalibur.png" alt="Logo" class="header-logo">
+            <h1>Excalibur Documentation</h1>
+        </div>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search documentation..." onkeyup="searchDocs()">
             <span class="search-icon">🔍</span>
@@ -362,22 +378,7 @@
                 </ul>
             </div>
 
-            <div class="sidebar-section">
-                <div class="sidebar-title">API Reference</div>
-                <ul>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="loadContentWithSection('api', 'overview')" data-page="api">
-                            <span class="arrow">▶</span>
-                            Core API
-                        </a>
-                        <ul class="submenu">
-                            <li><a class="nav-link" onclick="scrollToSection('overview')" data-section="overview">Overview</a></li>
-                            <li><a class="nav-link" onclick="scrollToSection('functions')" data-section="functions">Functions</a></li>
-                            <li><a class="nav-link" onclick="scrollToSection('classes')" data-section="classes">Classes</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+
         </nav>
 
         <main class="content" id="content">
@@ -594,84 +595,6 @@ Space     - Play/Pause</code></pre>
                     <li>Ambient Occlusion</li>
                 </ul>
             `,
-            api: `
-                <h1>API Reference</h1>
-                <p>The API provides programmatic access to all software features.</p>
-                
-                <h2 id="overview">Overview</h2>
-                <p>Our API allows you to automate workflows, create plugins, and integrate with other tools.</p>
-                <h3>Getting Started</h3>
-                <pre><code>import api from 'our-software-api';
-
-const app = new api.Application();
-app.init();
-
-// Create a new scene
-const scene = app.createScene();</code></pre>
-                <h3>Authentication</h3>
-                <p>API calls require authentication using an API key:</p>
-                <pre><code>api.authenticate('your-api-key-here');</code></pre>
-                
-                <h2 id="functions">Functions</h2>
-                <p>Reference guide for all available API functions.</p>
-                <h3>Core Functions</h3>
-                <pre><code>// Create objects
-api.create(type, options)
-
-// Delete objects
-api.delete(id)
-
-// Update object properties
-api.update(id, properties)
-
-// Render scene
-api.render(settings)
-
-// Export data
-api.export(format, options)</code></pre>
-                <h3>Scene Management</h3>
-                <pre><code>// Load a scene
-api.loadScene('path/to/scene.json')
-
-// Save current scene
-api.saveScene('path/to/output.json')
-
-// Clear scene
-api.clearScene()</code></pre>
-                
-                <h2 id="classes">Classes</h2>
-                <p>Object-oriented interface for complex operations.</p>
-                <h3>Main Classes</h3>
-                <ul>
-                    <li><strong>Scene:</strong> Manages the 3D scene and all objects within it</li>
-                    <li><strong>Object:</strong> Base class for all 3D objects</li>
-                    <li><strong>Camera:</strong> Controls viewport and rendering perspective</li>
-                    <li><strong>Light:</strong> Handles lighting in the scene</li>
-                    <li><strong>Material:</strong> Defines surface properties</li>
-                </ul>
-                <h3>Example Usage</h3>
-                <pre><code>// Create a scene
-const scene = new api.Scene();
-
-// Add a camera
-const camera = new api.Camera({
-    position: [0, 0, 10],
-    target: [0, 0, 0]
-});
-scene.add(camera);
-
-// Create an object
-const cube = new api.Object.Cube({
-    size: 2,
-    material: new api.Material({
-        color: '#ff0000'
-    })
-});
-scene.add(cube);
-
-// Render
-scene.render();</code></pre>
-            `
         };
 
         function loadContentWithSection(page, section = null) {
