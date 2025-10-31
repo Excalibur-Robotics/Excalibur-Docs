@@ -161,12 +161,14 @@
             flex: 1;
             overflow-y: auto;
             padding: 2rem 3rem;
+            scroll-behavior: smooth;
         }
 
         .content h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--text-primary);
+            scroll-margin-top: 2rem;
         }
 
         .content h2 {
@@ -176,6 +178,7 @@
             color: var(--text-primary);
             border-bottom: 1px solid var(--border);
             padding-bottom: 0.5rem;
+            scroll-margin-top: 2rem;
         }
 
         .content h3 {
@@ -183,6 +186,7 @@
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
             color: var(--text-primary);
+            scroll-margin-top: 2rem;
         }
 
         .content p {
@@ -323,36 +327,36 @@
                 <div class="sidebar-title">User Guide</div>
                 <ul>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="toggleSubmenu(this)">
+                        <a class="nav-link" onclick="loadContentWithSection('interface', 'overview')" data-page="interface">
                             <span class="arrow">▶</span>
                             Interface
                         </a>
                         <ul class="submenu">
-                            <li><a class="nav-link" onclick="loadContent('interface-overview')" data-page="interface-overview">Overview</a></li>
-                            <li><a class="nav-link" onclick="loadContent('interface-navigation')" data-page="interface-navigation">Navigation</a></li>
-                            <li><a class="nav-link" onclick="loadContent('interface-customization')" data-page="interface-customization">Customization</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('overview')" data-section="overview">Overview</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('navigation')" data-section="navigation">Navigation</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('customization')" data-section="customization">Customization</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="toggleSubmenu(this)">
+                        <a class="nav-link" onclick="loadContentWithSection('modeling', 'basics')" data-page="modeling">
                             <span class="arrow">▶</span>
                             Modeling
                         </a>
                         <ul class="submenu">
-                            <li><a class="nav-link" onclick="loadContent('modeling-basics')" data-page="modeling-basics">Basics</a></li>
-                            <li><a class="nav-link" onclick="loadContent('modeling-advanced')" data-page="modeling-advanced">Advanced Techniques</a></li>
-                            <li><a class="nav-link" onclick="loadContent('modeling-modifiers')" data-page="modeling-modifiers">Modifiers</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('basics')" data-section="basics">Basics</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('advanced')" data-section="advanced">Advanced Techniques</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('modifiers')" data-section="modifiers">Modifiers</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="toggleSubmenu(this)">
+                        <a class="nav-link" onclick="loadContentWithSection('rendering', 'setup')" data-page="rendering">
                             <span class="arrow">▶</span>
                             Rendering
                         </a>
                         <ul class="submenu">
-                            <li><a class="nav-link" onclick="loadContent('rendering-setup')" data-page="rendering-setup">Setup</a></li>
-                            <li><a class="nav-link" onclick="loadContent('rendering-lighting')" data-page="rendering-lighting">Lighting</a></li>
-                            <li><a class="nav-link" onclick="loadContent('rendering-materials')" data-page="rendering-materials">Materials</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('setup')" data-section="setup">Setup</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('lighting')" data-section="lighting">Lighting</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('materials')" data-section="materials">Materials</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -362,14 +366,14 @@
                 <div class="sidebar-title">API Reference</div>
                 <ul>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="toggleSubmenu(this)">
+                        <a class="nav-link" onclick="loadContentWithSection('api', 'overview')" data-page="api">
                             <span class="arrow">▶</span>
                             Core API
                         </a>
                         <ul class="submenu">
-                            <li><a class="nav-link" onclick="loadContent('api-overview')" data-page="api-overview">Overview</a></li>
-                            <li><a class="nav-link" onclick="loadContent('api-functions')" data-page="api-functions">Functions</a></li>
-                            <li><a class="nav-link" onclick="loadContent('api-classes')" data-page="api-classes">Classes</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('overview')" data-section="overview">Overview</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('functions')" data-section="functions">Functions</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('classes')" data-section="classes">Classes</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -382,7 +386,7 @@
             <p>This documentation site provides comprehensive information about using our software. Use the navigation menu on the left to browse different sections.</p>
 
             <div class="note">
-                <strong>Note:</strong> This is a template documentation site. You can customize the content, styling, and structure to fit your needs.
+                <strong>Note:</strong> This is a template documentation site. Click on parent items to load the page, then click on child items to scroll to specific sections.
             </div>
 
             <h2>Features</h2>
@@ -390,6 +394,7 @@
                 <li>Responsive sidebar navigation with dropdown menus</li>
                 <li>Dark theme inspired by Blender's documentation</li>
                 <li>Search functionality</li>
+                <li>Smooth scrolling to sections</li>
                 <li>Mobile-friendly design</li>
                 <li>Clean and modern interface</li>
             </ul>
@@ -397,10 +402,10 @@
             <h2>Getting Started</h2>
             <p>To begin using this documentation:</p>
             <ol>
-                <li>Browse the navigation menu to find the topic you're interested in</li>
-                <li>Click on any section to expand dropdown menus</li>
+                <li>Click on any parent section (e.g., "Interface") to load that page</li>
+                <li>Click on the arrow to expand/collapse the dropdown menu</li>
+                <li>Click on child items to smoothly scroll to that section on the page</li>
                 <li>Use the search box to quickly find specific topics</li>
-                <li>Read through the guides and tutorials</li>
             </ol>
 
             <h3>Code Examples</h3>
@@ -420,6 +425,8 @@
     </div>
 
     <script>
+        let currentPage = '';
+
         const contentPages = {
             introduction: `
                 <h1>Introduction</h1>
@@ -459,134 +466,264 @@ sudo apt-get install our-software</code></pre>
                 <h2>Step 3: Create Your First Object</h2>
                 <p>Use the Add menu to create your first object and start experimenting with the tools.</p>
             `,
-            'interface-overview': `
-                <h1>Interface Overview</h1>
+            interface: `
+                <h1>Interface</h1>
                 <p>The interface is divided into several key areas designed for maximum productivity.</p>
-                <h2>Main Areas</h2>
+                
+                <h2 id="overview">Overview</h2>
+                <p>The main interface consists of the following components:</p>
                 <ul>
                     <li><strong>Header:</strong> Contains the main menu and search functionality</li>
                     <li><strong>Sidebar:</strong> Navigation and tool options</li>
                     <li><strong>Workspace:</strong> Your main working area</li>
                     <li><strong>Properties Panel:</strong> Adjust settings for selected objects</li>
                 </ul>
-            `,
-            'interface-navigation': `
-                <h1>Navigation</h1>
+                <p>Each component is designed to be intuitive and easily accessible.</p>
+                
+                <h2 id="navigation">Navigation</h2>
                 <p>Learn how to efficiently navigate through the interface.</p>
-                <h2>Keyboard Shortcuts</h2>
+                <h3>Keyboard Shortcuts</h3>
                 <pre><code>Ctrl+N    - New project
 Ctrl+O    - Open project
 Ctrl+S    - Save project
 Ctrl+Z    - Undo
-Ctrl+Y    - Redo</code></pre>
-            `,
-            'interface-customization': `
-                <h1>Interface Customization</h1>
+Ctrl+Y    - Redo
+Space     - Play/Pause</code></pre>
+                <h3>Mouse Controls</h3>
+                <p>Use the mouse to interact with the interface:</p>
+                <ul>
+                    <li>Left click to select</li>
+                    <li>Right click for context menus</li>
+                    <li>Middle mouse button to pan</li>
+                    <li>Scroll wheel to zoom</li>
+                </ul>
+                
+                <h2 id="customization">Customization</h2>
                 <p>Customize the interface to match your workflow preferences.</p>
-                <h2>Themes</h2>
-                <p>Choose from light, dark, or high-contrast themes in the preferences menu.</p>
-                <h2>Layout</h2>
-                <p>Drag and drop panels to rearrange the workspace layout to your liking.</p>
-            `,
-            'modeling-basics': `
-                <h1>Modeling Basics</h1>
-                <p>Learn the fundamental concepts of 3D modeling.</p>
-                <h2>Basic Shapes</h2>
-                <p>Start with primitive shapes like cubes, spheres, and cylinders.</p>
+                <h3>Themes</h3>
+                <p>Choose from light, dark, or high-contrast themes in the preferences menu. Access this through Edit > Preferences > Interface > Theme.</p>
+                <h3>Layout</h3>
+                <p>Drag and drop panels to rearrange the workspace layout to your liking. You can also save custom layouts and switch between them quickly.</p>
                 <div class="note">
-                    <strong>Pro Tip:</strong> Use the transform tools to move, rotate, and scale objects.
+                    <strong>Tip:</strong> Save your custom layouts using Window > Save Layout, so you can quickly switch between different workspace configurations.
                 </div>
             `,
-            'modeling-advanced': `
-                <h1>Advanced Modeling Techniques</h1>
+            modeling: `
+                <h1>Modeling</h1>
+                <p>Learn the art of 3D modeling from basics to advanced techniques.</p>
+                
+                <h2 id="basics">Basics</h2>
+                <p>Start with the fundamental concepts of 3D modeling.</p>
+                <h3>Basic Shapes</h3>
+                <p>Begin with primitive shapes like cubes, spheres, and cylinders. These form the foundation for more complex models.</p>
+                <h3>Transform Tools</h3>
+                <p>Master the three basic transform operations:</p>
+                <ul>
+                    <li><strong>Move (G):</strong> Translate objects in 3D space</li>
+                    <li><strong>Rotate (R):</strong> Rotate objects around their pivot point</li>
+                    <li><strong>Scale (S):</strong> Change the size of objects</li>
+                </ul>
+                <div class="note">
+                    <strong>Pro Tip:</strong> Hold Shift while transforming for finer control.
+                </div>
+                
+                <h2 id="advanced">Advanced Techniques</h2>
                 <p>Take your modeling skills to the next level with advanced techniques.</p>
-                <h2>Subdivision Modeling</h2>
-                <p>Create smooth, organic shapes using subdivision surfaces.</p>
-                <h2>Boolean Operations</h2>
-                <p>Combine objects using union, difference, and intersection operations.</p>
-            `,
-            'modeling-modifiers': `
-                <h1>Modifiers</h1>
+                <h3>Subdivision Modeling</h3>
+                <p>Create smooth, organic shapes using subdivision surfaces. This technique is essential for character modeling and organic forms.</p>
+                <h3>Boolean Operations</h3>
+                <p>Combine objects using union, difference, and intersection operations. This is particularly useful for hard surface modeling.</p>
+                <h3>Edge Flow</h3>
+                <p>Understanding proper edge flow is crucial for creating models that deform well and render efficiently.</p>
+                
+                <h2 id="modifiers">Modifiers</h2>
                 <p>Modifiers are powerful tools that allow non-destructive editing of your models.</p>
-                <h2>Common Modifiers</h2>
+                <h3>Common Modifiers</h3>
                 <ul>
                     <li><strong>Array:</strong> Create multiple copies in a pattern</li>
                     <li><strong>Mirror:</strong> Create symmetrical geometry</li>
-                    <li><strong>Bevel:</strong> Add beveled edges</li>
+                    <li><strong>Bevel:</strong> Add beveled edges for realistic hard surface details</li>
+                    <li><strong>Subdivision Surface:</strong> Smooth geometry with configurable detail levels</li>
                 </ul>
+                <p>Modifiers can be stacked and applied in different orders to achieve various effects.</p>
             `,
-            'rendering-setup': `
-                <h1>Rendering Setup</h1>
+            rendering: `
+                <h1>Rendering</h1>
+                <p>Transform your 3D models into beautiful images with proper rendering techniques.</p>
+                
+                <h2 id="setup">Render Setup</h2>
                 <p>Configure your render settings for optimal output quality.</p>
-                <h2>Render Engines</h2>
-                <p>Choose between different render engines based on your needs: Realtime, Path Tracer, or Hybrid.</p>
-            `,
-            'rendering-lighting': `
-                <h1>Lighting</h1>
-                <p>Proper lighting is essential for creating realistic renders.</p>
-                <h2>Light Types</h2>
+                <h3>Render Engines</h3>
+                <p>Choose between different render engines based on your needs:</p>
                 <ul>
-                    <li><strong>Point Light:</strong> Omnidirectional light source</li>
-                    <li><strong>Spot Light:</strong> Directional cone of light</li>
-                    <li><strong>Area Light:</strong> Soft, diffused lighting</li>
+                    <li><strong>Realtime:</strong> Fast previews and interactive rendering</li>
+                    <li><strong>Path Tracer:</strong> Physically accurate, photorealistic results</li>
+                    <li><strong>Hybrid:</strong> Balance between speed and quality</li>
+                </ul>
+                <h3>Output Settings</h3>
+                <p>Configure resolution, file format, and color management settings to match your project requirements.</p>
+                
+                <h2 id="lighting">Lighting</h2>
+                <p>Proper lighting is essential for creating realistic renders.</p>
+                <h3>Light Types</h3>
+                <ul>
+                    <li><strong>Point Light:</strong> Omnidirectional light source, like a light bulb</li>
+                    <li><strong>Spot Light:</strong> Directional cone of light with adjustable spread</li>
+                    <li><strong>Area Light:</strong> Soft, diffused lighting for realistic illumination</li>
+                    <li><strong>Sun Light:</strong> Directional light for outdoor scenes</li>
+                </ul>
+                <h3>Three-Point Lighting</h3>
+                <p>A classic technique using key light, fill light, and rim light to create professional-looking results.</p>
+                <div class="note">
+                    <strong>Tip:</strong> Use HDRI environment maps for realistic ambient lighting and reflections.
+                </div>
+                
+                <h2 id="materials">Materials</h2>
+                <p>Create realistic surface appearances with materials and shaders.</p>
+                <h3>Material Properties</h3>
+                <p>Adjust properties like color, roughness, metallic, and transparency to achieve different looks.</p>
+                <h3>PBR Workflow</h3>
+                <p>Physically Based Rendering (PBR) ensures your materials look consistent under different lighting conditions.</p>
+                <h3>Texture Mapping</h3>
+                <p>Apply image textures to add detail and realism to your models. Common texture types include:</p>
+                <ul>
+                    <li>Base Color (Albedo)</li>
+                    <li>Normal Maps</li>
+                    <li>Roughness Maps</li>
+                    <li>Metallic Maps</li>
+                    <li>Ambient Occlusion</li>
                 </ul>
             `,
-            'rendering-materials': `
-                <h1>Materials</h1>
-                <p>Create realistic surface appearances with materials and shaders.</p>
-                <h2>Material Properties</h2>
-                <p>Adjust properties like color, roughness, metallic, and transparency to achieve different looks.</p>
-            `,
-            'api-overview': `
-                <h1>API Overview</h1>
+            api: `
+                <h1>API Reference</h1>
                 <p>The API provides programmatic access to all software features.</p>
-                <h2>Getting Started</h2>
+                
+                <h2 id="overview">Overview</h2>
+                <p>Our API allows you to automate workflows, create plugins, and integrate with other tools.</p>
+                <h3>Getting Started</h3>
                 <pre><code>import api from 'our-software-api';
 
 const app = new api.Application();
-app.init();</code></pre>
-            `,
-            'api-functions': `
-                <h1>API Functions</h1>
+app.init();
+
+// Create a new scene
+const scene = app.createScene();</code></pre>
+                <h3>Authentication</h3>
+                <p>API calls require authentication using an API key:</p>
+                <pre><code>api.authenticate('your-api-key-here');</code></pre>
+                
+                <h2 id="functions">Functions</h2>
                 <p>Reference guide for all available API functions.</p>
-                <h2>Core Functions</h2>
-                <pre><code>api.create(type, options)
+                <h3>Core Functions</h3>
+                <pre><code>// Create objects
+api.create(type, options)
+
+// Delete objects
 api.delete(id)
+
+// Update object properties
 api.update(id, properties)
-api.render(settings)</code></pre>
-            `,
-            'api-classes': `
-                <h1>API Classes</h1>
+
+// Render scene
+api.render(settings)
+
+// Export data
+api.export(format, options)</code></pre>
+                <h3>Scene Management</h3>
+                <pre><code>// Load a scene
+api.loadScene('path/to/scene.json')
+
+// Save current scene
+api.saveScene('path/to/output.json')
+
+// Clear scene
+api.clearScene()</code></pre>
+                
+                <h2 id="classes">Classes</h2>
                 <p>Object-oriented interface for complex operations.</p>
-                <h2>Main Classes</h2>
+                <h3>Main Classes</h3>
                 <ul>
-                    <li><strong>Scene:</strong> Manages the 3D scene</li>
+                    <li><strong>Scene:</strong> Manages the 3D scene and all objects within it</li>
                     <li><strong>Object:</strong> Base class for all 3D objects</li>
-                    <li><strong>Camera:</strong> Controls viewport and rendering</li>
+                    <li><strong>Camera:</strong> Controls viewport and rendering perspective</li>
+                    <li><strong>Light:</strong> Handles lighting in the scene</li>
+                    <li><strong>Material:</strong> Defines surface properties</li>
                 </ul>
+                <h3>Example Usage</h3>
+                <pre><code>// Create a scene
+const scene = new api.Scene();
+
+// Add a camera
+const camera = new api.Camera({
+    position: [0, 0, 10],
+    target: [0, 0, 0]
+});
+scene.add(camera);
+
+// Create an object
+const cube = new api.Object.Cube({
+    size: 2,
+    material: new api.Material({
+        color: '#ff0000'
+    })
+});
+scene.add(cube);
+
+// Render
+scene.render();</code></pre>
             `
         };
 
-        function toggleSubmenu(el) {
-            const submenu = el.nextElementSibling;
-            const arrow = el.querySelector('.arrow');
-            
-            if (submenu && submenu.classList.contains('submenu')) {
-                submenu.classList.toggle('open');
-                arrow.classList.toggle('rotated');
-            }
-        }
-
-        function loadContent(page) {
+        function loadContentWithSection(page, section = null) {
+            currentPage = page;
             const content = document.getElementById('content');
             
             if (contentPages[page]) {
                 content.innerHTML = contentPages[page];
                 
-                // Update active state
-                document.querySelectorAll('.nav-link').forEach(link => {
+                // Update active state for parent
+                document.querySelectorAll('.nav-link[data-page]').forEach(link => {
                     link.classList.remove('active');
                     if (link.dataset.page === page) {
+                        link.classList.add('active');
+                        
+                        // Open the submenu
+                        const submenu = link.nextElementSibling;
+                        const arrow = link.querySelector('.arrow');
+                        if (submenu && submenu.classList.contains('submenu')) {
+                            submenu.classList.add('open');
+                            if (arrow) arrow.classList.add('rotated');
+                        }
+                    }
+                });
+
+                // Scroll to section if specified
+                if (section) {
+                    setTimeout(() => {
+                        scrollToSection(section);
+                    }, 100);
+                }
+
+                // Close sidebar on mobile
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('open');
+                }
+            }
+        }
+
+        function loadContent(page) {
+            loadContentWithSection(page);
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Update active state for submenu items
+                document.querySelectorAll('.submenu .nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.section === sectionId) {
                         link.classList.add('active');
                     }
                 });
@@ -595,9 +732,6 @@ api.render(settings)</code></pre>
                 if (window.innerWidth <= 768) {
                     document.getElementById('sidebar').classList.remove('open');
                 }
-
-                // Scroll to top
-                content.scrollTop = 0;
             }
         }
 
@@ -611,7 +745,6 @@ api.render(settings)</code></pre>
                 
                 if (text.includes(input)) {
                     parent.style.display = 'block';
-                    // Open parent submenu if it's a submenu item
                     const parentSubmenu = link.closest('.submenu');
                     if (parentSubmenu) {
                         parentSubmenu.classList.add('open');
@@ -622,8 +755,7 @@ api.render(settings)</code></pre>
                     if (!input) {
                         parent.style.display = 'block';
                     } else {
-                        // Only hide if it's not a parent of a matching child
-                        const hasMatchingChild = parent.querySelector('.submenu .nav-link[data-page]');
+                        const hasMatchingChild = parent.querySelector('.submenu .nav-link');
                         if (!hasMatchingChild || !hasMatchingChild.textContent.toLowerCase().includes(input)) {
                             parent.style.display = 'none';
                         }
@@ -636,7 +768,6 @@ api.render(settings)</code></pre>
             document.getElementById('sidebar').classList.toggle('open');
         }
 
-        // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(e) {
             const sidebar = document.getElementById('sidebar');
             const menuToggle = document.querySelector('.menu-toggle');
