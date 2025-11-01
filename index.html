@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excalibur Documentation</title>
+    <link href="excalibur.png">
     <style>
         * {
             margin: 0;
@@ -43,18 +44,17 @@
             justify-content: space-between;
         }
 
-          .header-content {
+        .header-content {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
         .header-logo {
-            width: 100px;
+            width: 40px;
             height: 40px;
             object-fit: contain;
         }
-
 
         .header h1 {
             font-size: 1.5rem;
@@ -138,6 +138,7 @@
         .nav-link.active {
             background: var(--accent);
             color: white;
+            box-shadow: 0 0 15px rgba(170, 68, 221, 0.6), 0 0 30px rgba(170, 68, 221, 0.3);
         }
 
         .nav-link .arrow {
@@ -266,6 +267,7 @@
 
         .btn:hover {
             background: var(--accent-hover);
+            box-shadow: 0 0 20px rgba(170, 68, 221, 0.5);
         }
 
         @media (max-width: 768px) {
@@ -316,69 +318,245 @@
     <div class="container">
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-title">Getting Started</div>
+                <div class="sidebar-title">Welcome</div>
                 <ul>
                     <li class="nav-item">
-                        <a class="nav-link active" onclick="loadContent('introduction')" data-page="introduction">
+                        <a class="nav-link active" onclick="loadContent('welcome')" data-page="welcome">
                             <span class="no-arrow"></span>
-                            Introduction
+                            Getting Started
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="loadContent('installation')" data-page="installation">
+                        <a class="nav-link" onclick="loadContent('team-resources')" data-page="team-resources">
                             <span class="no-arrow"></span>
-                            Installation
+                            Team Resources
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="loadContent('quickstart')" data-page="quickstart">
+                        <a class="nav-link" onclick="loadContent('competition-guide')" data-page="competition-guide">
                             <span class="no-arrow"></span>
-                            Quick Start
+                            Competition Guide
                         </a>
                     </li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-title">User Guide</div>
+                <div class="sidebar-title">CAD</div>
                 <ul>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="loadContentWithSection('interface', 'overview')" data-page="interface">
+                        <a class="nav-link" onclick="loadContentWithSection('cad-onshape', 'getting-started')" data-page="cad-onshape">
                             <span class="arrow">▶</span>
-                            Interface
+                            How to CAD FTC in Onshape
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('getting-started')" data-section="getting-started">Getting Started</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('basic-tools')" data-section="basic-tools">Basic Tools</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('assemblies')" data-section="assemblies">Assemblies</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('best-practices')" data-section="best-practices">Best Practices</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('parallel-plate', 'introduction')" data-page="parallel-plate">
+                            <span class="arrow">▶</span>
+                            How to Design Parallel Plate
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('introduction')" data-section="introduction">Introduction</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('spacing-calculations')" data-section="spacing-calculations">Spacing Calculations</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('material-selection')" data-section="material-selection">Material Selection</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('assembly-tips')" data-section="assembly-tips">Assembly Tips</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('3d-printing', 'overview')" data-page="3d-printing">
+                            <span class="arrow">▶</span>
+                            3D Printing Custom Parts
                         </a>
                         <ul class="submenu">
                             <li><a class="nav-link" onclick="scrollToSection('overview')" data-section="overview">Overview</a></li>
-                            <li><a class="nav-link" onclick="scrollToSection('navigation')" data-section="navigation">Navigation</a></li>
-                            <li><a class="nav-link" onclick="scrollToSection('customization')" data-section="customization">Customization</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('design-considerations')" data-section="design-considerations">Design Considerations</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('print-settings')" data-section="print-settings">Print Settings</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('post-processing')" data-section="post-processing">Post-Processing</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="loadContentWithSection('modeling', 'basics')" data-page="modeling">
+                        <a class="nav-link" onclick="loadContentWithSection('cad-common-mistakes', 'overview')" data-page="cad-common-mistakes">
                             <span class="arrow">▶</span>
-                            Modeling
+                            Common CAD Mistakes
                         </a>
                         <ul class="submenu">
-                            <li><a class="nav-link" onclick="scrollToSection('basics')" data-section="basics">Basics</a></li>
-                            <li><a class="nav-link" onclick="scrollToSection('advanced')" data-section="advanced">Advanced Techniques</a></li>
-                            <li><a class="nav-link" onclick="scrollToSection('modifiers')" data-section="modifiers">Modifiers</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="loadContentWithSection('rendering', 'setup')" data-page="rendering">
-                            <span class="arrow">▶</span>
-                            Rendering
-                        </a>
-                        <ul class="submenu">
-                            <li><a class="nav-link" onclick="scrollToSection('setup')" data-section="setup">Setup</a></li>
-                            <li><a class="nav-link" onclick="scrollToSection('lighting')" data-section="lighting">Lighting</a></li>
-                            <li><a class="nav-link" onclick="scrollToSection('materials')" data-section="materials">Materials</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('overview')" data-section="overview">Overview</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('clearance-issues')" data-section="clearance-issues">Clearance Issues</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('structural-weaknesses')" data-section="structural-weaknesses">Structural Weaknesses</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('assembly-problems')" data-section="assembly-problems">Assembly Problems</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
 
+            <div class="sidebar-section">
+                <div class="sidebar-title">Programming</div>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('ftclib', 'introduction')" data-page="ftclib">
+                            <span class="arrow">▶</span>
+                            FTCLib
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('introduction')" data-section="introduction">Introduction</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('installation')" data-section="installation">Installation</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('command-based')" data-section="command-based">Command-Based Programming</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('subsystems')" data-section="subsystems">Subsystems</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('github', 'basics')" data-page="github">
+                            <span class="arrow">▶</span>
+                            GitHub & Version Control
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('basics')" data-section="basics">Git Basics</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('workflow')" data-section="workflow">Team Workflow</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('collaboration')" data-section="collaboration">Collaboration</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('troubleshooting')" data-section="troubleshooting">Troubleshooting</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('roadrunner', 'overview')" data-page="roadrunner">
+                            <span class="arrow">▶</span>
+                            RoadRunner Autonomous
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('overview')" data-section="overview">Overview</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('setup')" data-section="setup">Setup</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('path-building')" data-section="path-building">Building Paths</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('tuning')" data-section="tuning">Tuning</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
+            <div class="sidebar-section">
+                <div class="sidebar-title">Mechanical</div>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('drivetrain', 'types')" data-page="drivetrain">
+                            <span class="arrow">▶</span>
+                            Drivetrain Design
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('types')" data-section="types">Types of Drivetrains</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('gear-ratios')" data-section="gear-ratios">Gear Ratios</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('wheel-selection')" data-section="wheel-selection">Wheel Selection</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('building-tips')" data-section="building-tips">Building Tips</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('mechanisms', 'intakes')" data-page="mechanisms">
+                            <span class="arrow">▶</span>
+                            Game Mechanisms
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('intakes')" data-section="intakes">Intakes</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('lifts')" data-section="lifts">Lifts & Slides</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('arms')" data-section="arms">Arms & Pivots</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('grippers')" data-section="grippers">Grippers & Claws</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('materials', 'overview')" data-page="materials">
+                            <span class="arrow">▶</span>
+                            Materials & Fasteners
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('overview')" data-section="overview">Material Selection</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('fasteners')" data-section="fasteners">Fasteners & Hardware</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('tools')" data-section="tools">Essential Tools</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Electrical</div>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('wiring', 'basics')" data-page="wiring">
+                            <span class="arrow">▶</span>
+                            Wiring & Cable Management
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('basics')" data-section="basics">Wiring Basics</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('cable-management')" data-section="cable-management">Cable Management</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('connectors')" data-section="connectors">Connectors</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('troubleshooting')" data-section="troubleshooting">Troubleshooting</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('sensors', 'types')" data-page="sensors">
+                            <span class="arrow">▶</span>
+                            Sensors
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('types')" data-section="types">Sensor Types</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('placement')" data-section="placement">Placement & Mounting</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('calibration')" data-section="calibration">Calibration</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('power', 'battery')" data-page="power">
+                            <span class="arrow">▶</span>
+                            Power Management
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('battery')" data-section="battery">Battery Care</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('distribution')" data-section="distribution">Power Distribution</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('current-draw')" data-section="current-draw">Current Draw</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Outreach</div>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('outreach-planning', 'why-outreach')" data-page="outreach-planning">
+                            <span class="arrow">▶</span>
+                            Planning Outreach
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('why-outreach')" data-section="why-outreach">Why Outreach?</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('event-ideas')" data-section="event-ideas">Event Ideas</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('planning-timeline')" data-section="planning-timeline">Planning Timeline</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('budgeting')" data-section="budgeting">Budgeting</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('community-engagement', 'schools')" data-page="community-engagement">
+                            <span class="arrow">▶</span>
+                            Community Engagement
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('schools')" data-section="schools">School Visits</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('workshops')" data-section="workshops">Workshops & Demos</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('mentoring')" data-section="mentoring">Mentoring Programs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="loadContentWithSection('documentation', 'portfolio')" data-page="documentation">
+                            <span class="arrow">▶</span>
+                            Documenting Impact
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="nav-link" onclick="scrollToSection('portfolio')" data-section="portfolio">Building a Portfolio</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('social-media')" data-section="social-media">Social Media</a></li>
+                            <li><a class="nav-link" onclick="scrollToSection('awards')" data-section="awards">Awards Submissions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
         <main class="content" id="content">
@@ -429,7 +607,742 @@
         let currentPage = '';
 
         const contentPages = {
-            introduction: `
+            welcome: `
+                <h1>Welcome to FTC Documentation</h1>
+                <p>Your comprehensive guide to FIRST Tech Challenge robotics. Whether you're a rookie team or seasoned competitor, this documentation will help you excel in all aspects of FTC.</p>
+                
+                <h2>What is FIRST Tech Challenge?</h2>
+                <p>FIRST Tech Challenge (FTC) is a robotics competition for students in grades 7-12. Teams design, build, and program robots to compete in an alliance format against other teams.</p>
+                
+                <div class="note">
+                    <strong>New to FTC?</strong> Start with the Getting Started section to learn the basics, then explore CAD, Programming, Mechanical, Electrical, and Outreach sections.
+                </div>
+                
+                <h2>Quick Navigation</h2>
+                <ul>
+                    <li><strong>CAD:</strong> Learn to design your robot in Onshape, from basic tools to advanced techniques</li>
+                    <li><strong>Programming:</strong> Master FTCLib, GitHub, and autonomous programming with RoadRunner</li>
+                    <li><strong>Mechanical:</strong> Build robust drivetrains, game mechanisms, and select the right materials</li>
+                    <li><strong>Electrical:</strong> Wire your robot properly, integrate sensors, and manage power</li>
+                    <li><strong>Outreach:</strong> Plan and document impactful community engagement activities</li>
+                </ul>
+                
+                <h2>How to Use This Documentation</h2>
+                <ol>
+                    <li>Browse sections using the left sidebar navigation</li>
+                    <li>Click parent topics to load full pages</li>
+                    <li>Click subsections to jump to specific content</li>
+                    <li>Use the search bar to find specific topics quickly</li>
+                </ol>
+                
+                <h2>Contributing</h2>
+                <p>This documentation is continuously updated. If you have suggestions or want to contribute, reach out to your team leads or mentors.</p>
+            `,
+            'team-resources': `
+                <h1>Team Resources</h1>
+                <p>Essential resources and links for FTC teams.</p>
+                
+                <h2>Official FIRST Resources</h2>
+                <ul>
+                    <li><strong>Game Manual:</strong> Read the official game rules and regulations</li>
+                    <li><strong>FIRST Tech Challenge Website:</strong> Latest news and updates</li>
+                    <li><strong>Robot Inspection Checklist:</strong> Ensure your robot is competition-ready</li>
+                    <li><strong>Forums:</strong> Ask questions and connect with other teams</li>
+                </ul>
+                
+                <h2>Vendor Resources</h2>
+                <ul>
+                    <li><strong>REV Robotics:</strong> Control system, motors, and structural components</li>
+                    <li><strong>goBILDA:</strong> Build system and motion components</li>
+                    <li><strong>Andymark:</strong> FTC legal parts and mechanisms</li>
+                    <li><strong>ServoCity:</strong> Motion control components</li>
+                </ul>
+                
+                <h2>Learning Resources</h2>
+                <ul>
+                    <li><strong>Game Manual 0:</strong> Comprehensive guide to FTC basics</li>
+                    <li><strong>FTC Tutorials:</strong> Video guides for building and programming</li>
+                    <li><strong>Team Forums:</strong> Learn from experienced teams</li>
+                </ul>
+            `,
+            'competition-guide': `
+                <h1>Competition Guide</h1>
+                <p>Prepare for competition day with this comprehensive guide.</p>
+                
+                <h2>Before Competition</h2>
+                <h3>One Week Before</h3>
+                <ul>
+                    <li>Complete robot inspection checklist</li>
+                    <li>Test all autonomous routines</li>
+                    <li>Practice driver-controlled operation</li>
+                    <li>Prepare spare parts and tools</li>
+                    <li>Update engineering notebook</li>
+                </ul>
+                
+                <h3>Competition Checklist</h3>
+                <pre><code>☐ Robot and spare parts
+☐ Charged batteries (at least 3)
+☐ Battery charger
+☐ Tools and spare hardware
+☐ Laptop with Android Studio
+☐ USB cables and phone chargers
+☐ Engineering notebook
+☐ Team banner and spirit items
+☐ Snacks and water</code></pre>
+                
+                <h2>At Competition</h2>
+                <h3>Check-In Process</h3>
+                <ol>
+                    <li>Register at the check-in desk</li>
+                    <li>Receive your pit assignment</li>
+                    <li>Set up in your pit area</li>
+                    <li>Pass robot inspection</li>
+                    <li>Pass field inspection</li>
+                    <li>Attend team meeting</li>
+                </ol>
+                
+                <h3>Between Matches</h3>
+                <ul>
+                    <li>Charge batteries immediately after matches</li>
+                    <li>Check for loose screws and connections</li>
+                    <li>Scout other teams</li>
+                    <li>Plan alliance selection strategy</li>
+                </ul>
+                
+                <div class="note">
+                    <strong>Important:</strong> Arrive at least 30 minutes before your first match for final checks!
+                </div>
+            `,
+            'cad-onshape': `
+                <h1>How to CAD FTC in Onshape</h1>
+                <p>Learn how to design FTC robots using Onshape, a powerful cloud-based CAD platform perfect for collaboration.</p>
+                
+                <h2 id="getting-started">Getting Started</h2>
+                <p>Onshape is a professional-grade CAD tool that runs entirely in your web browser. No installation required!</p>
+                <h3>Creating an Account</h3>
+                <ol>
+                    <li>Visit <code>onshape.com</code> and sign up for a free education account</li>
+                    <li>Verify your email address</li>
+                    <li>Complete the introductory tutorial</li>
+                    <li>Import the FTC parts library from the App Store</li>
+                </ol>
+                <div class="note">
+                    <strong>Important:</strong> Make sure to use your school email to qualify for the free education plan with unlimited public and private documents.
+                </div>
+                
+                <h2 id="basic-tools">Basic Tools</h2>
+                <p>Master these fundamental Onshape tools for FTC CAD:</p>
+                <h3>Sketching</h3>
+                <ul>
+                    <li><strong>Line Tool (L):</strong> Create straight lines and construction geometry</li>
+                    <li><strong>Circle (C):</strong> Draw circles for holes and shafts</li>
+                    <li><strong>Rectangle (R):</strong> Quick way to create rectangular profiles</li>
+                    <li><strong>Dimension (D):</strong> Add precise measurements to your sketches</li>
+                </ul>
+                <h3>3D Features</h3>
+                <pre><code>Extrude (E)    - Create 3D geometry from sketches
+Revolve        - Create circular features
+Hole           - Add mounting holes quickly
+Fillet         - Round sharp edges
+Chamfer        - Bevel edges at 45 degrees</code></pre>
+                
+                <h2 id="assemblies">Assemblies</h2>
+                <p>Learn to create robot assemblies that accurately represent your FTC robot.</p>
+                <h3>Mates</h3>
+                <p>Use mates to position parts relative to each other:</p>
+                <ul>
+                    <li><strong>Fastened:</strong> Lock parts together rigidly</li>
+                    <li><strong>Revolute:</strong> Allow rotation around an axis (for wheels, arms)</li>
+                    <li><strong>Slider:</strong> Allow linear motion (for slides, elevators)</li>
+                    <li><strong>Planar:</strong> Keep surfaces flush while allowing sliding</li>
+                </ul>
+                <h3>Inserting Standard Parts</h3>
+                <p>Use the FTC parts library to add motors, servos, channels, and other components to your assembly without modeling from scratch.</p>
+                
+                <h2 id="best-practices">Best Practices</h2>
+                <p>Follow these guidelines for efficient FTC CAD design:</p>
+                <ul>
+                    <li>Always work in inches or millimeters consistently</li>
+                    <li>Use parameters for repeated dimensions (hole spacing, plate thickness)</li>
+                    <li>Name your features descriptively ("intake-mount-plate" not "extrude-1")</li>
+                    <li>Create part studios for groups of related parts</li>
+                    <li>Use configurations for parts with multiple versions</li>
+                    <li>Model at the actual size - don't scale parts</li>
+                    <li>Add clearance to all fasteners and bearings (typically 0.005"-0.010")</li>
+                </ul>
+                <div class="note">
+                    <strong>Pro Tip:</strong> Use the "Measure" tool frequently to verify spacing and clearances before building your robot.
+                </div>
+            `,
+            'parallel-plate': `
+                <h1>How to Design Parallel Plate</h1>
+                <p>Parallel plate construction is a popular and effective method for building rigid FTC robot structures.</p>
+                
+                <h2 id="introduction">Introduction</h2>
+                <p>Parallel plate design uses two parallel plates connected by standoffs or spacers to create strong, rigid structures.</p>
+                <h3>Advantages</h3>
+                <ul>
+                    <li>High strength-to-weight ratio</li>
+                    <li>Easy to manufacture and assemble</li>
+                    <li>Flexible mounting options</li>
+                    <li>Good for mounting motors and mechanisms between plates</li>
+                </ul>
+                <h3>Common Applications</h3>
+                <p>Parallel plate construction works well for:</p>
+                <ul>
+                    <li>Drivetrains and chassis</li>
+                    <li>Intake mechanisms</li>
+                    <li>Linear slide systems</li>
+                    <li>Arm pivots</li>
+                </ul>
+                
+                <h2 id="spacing-calculations">Spacing Calculations</h2>
+                <p>Proper spacing is critical for parallel plate designs.</p>
+                <h3>Motor Clearance</h3>
+                <pre><code>// Typical motor body dimensions
+HD Hex Motor: 1.5" diameter
+NeveRest Motor: 1.5" diameter
+goBILDA Motor: 1.5" diameter
+
+// Recommended plate spacing
+Minimum spacing: 1.6" (motor + 0.1" clearance)
+Recommended: 1.75" - 2.0" (allows wire routing)</code></pre>
+                <h3>Bearing Block Spacing</h3>
+                <p>When using bearing blocks between plates:</p>
+                <ul>
+                    <li>Regular bearing blocks: 0.5" height</li>
+                    <li>Low-profile bearing blocks: 0.375" height</li>
+                    <li>Add 0.125" clearance minimum</li>
+                </ul>
+                <div class="note">
+                    <strong>Important:</strong> Always account for wire routing space between your plates!
+                </div>
+                
+                <h2 id="material-selection">Material Selection</h2>
+                <p>Choose appropriate materials for your parallel plates.</p>
+                <h3>Aluminum</h3>
+                <ul>
+                    <li><strong>Thickness:</strong> 1/8" or 1/4"</li>
+                    <li><strong>Pros:</strong> Lightweight, strong, easy to machine</li>
+                    <li><strong>Cons:</strong> Requires machining tools</li>
+                </ul>
+                <h3>Polycarbonate</h3>
+                <ul>
+                    <li><strong>Thickness:</strong> 1/4" recommended</li>
+                    <li><strong>Pros:</strong> Impact resistant, clear for visibility, easier to cut</li>
+                    <li><strong>Cons:</strong> Flexes more than aluminum</li>
+                </ul>
+                <h3>Delrin/Acetal</h3>
+                <ul>
+                    <li><strong>Thickness:</strong> 1/4" or 3/8"</li>
+                    <li><strong>Pros:</strong> Low friction, good strength, machines nicely</li>
+                    <li><strong>Cons:</strong> More expensive</li>
+                </ul>
+                
+                <h2 id="assembly-tips">Assembly Tips</h2>
+                <p>Best practices for assembling parallel plate structures:</p>
+                <h3>Fastener Selection</h3>
+                <pre><code>Standoffs: Use aluminum standoffs for rigidity
+Screws: #10-32 or M5 for main structure
+Locknuts: Always use nylon-insert locknuts
+Thread Locker: Blue Loctite for semi-permanent joints</code></pre>
+                <h3>Assembly Order</h3>
+                <ol>
+                    <li>Attach standoffs to one plate first</li>
+                    <li>Mount mechanisms that go between plates</li>
+                    <li>Install the second plate</li>
+                    <li>Check all clearances before fully tightening</li>
+                    <li>Apply thread locker and torque fasteners</li>
+                </ol>
+                <div class="note">
+                    <strong>Pro Tip:</strong> Use a drill template or CNC to ensure hole patterns match perfectly between both plates.
+                </div>
+            `,
+            '3d-printing': `
+                <h1>3D Printing Custom Parts</h1>
+                <p>3D printing allows you to create custom parts tailored exactly to your robot's needs.</p>
+                
+                <h2 id="overview">Overview</h2>
+                <p>FDM (Fused Deposition Modeling) 3D printing is the most accessible method for FTC teams.</p>
+                <h3>When to 3D Print</h3>
+                <p>3D printing is ideal for:</p>
+                <ul>
+                    <li>Custom mounting brackets</li>
+                    <li>Specialized intake geometries</li>
+                    <li>Lightweight spacers and standoffs</li>
+                    <li>Prototyping before machining metal</li>
+                    <li>Non-load-bearing decorative parts</li>
+                </ul>
+                <h3>When NOT to 3D Print</h3>
+                <p>Avoid 3D printing for:</p>
+                <ul>
+                    <li>High-stress structural components</li>
+                    <li>Parts that experience repeated impact</li>
+                    <li>Precision bearings or bushings</li>
+                    <li>Parts requiring tight tolerances (&lt;0.005")</li>
+                </ul>
+                
+                <h2 id="design-considerations">Design Considerations</h2>
+                <p>Design your parts specifically for 3D printing success.</p>
+                <h3>Wall Thickness</h3>
+                <ul>
+                    <li><strong>Minimum:</strong> 2mm (0.08") for small parts</li>
+                    <li><strong>Recommended:</strong> 3-4mm (0.12"-0.16") for strength</li>
+                    <li><strong>Structural:</strong> 5mm+ (0.20"+) for load-bearing areas</li>
+                </ul>
+                <h3>Hole Sizing</h3>
+                <pre><code>// Add clearance for fasteners
+M3 screw: 3.2mm hole (nominal + 0.2mm)
+M4 screw: 4.3mm hole (nominal + 0.3mm)
+M5 screw: 5.3mm hole (nominal + 0.3mm)
+1/4" screw: 0.26" hole (nominal + 0.01")
+
+// For press-fit holes, go 0.1mm under nominal</code></pre>
+                <h3>Support Material</h3>
+                <p>Design to minimize support material:</p>
+                <ul>
+                    <li>Orient parts to reduce overhangs</li>
+                    <li>Keep overhangs under 45 degrees when possible</li>
+                    <li>Use chamfers instead of fillets on underside edges</li>
+                    <li>Add small bridges to avoid large flat overhangs</li>
+                </ul>
+                <div class="note">
+                    <strong>Design Rule:</strong> Add 0.3mm clearance to all holes and fitting surfaces for FDM prints.
+                </div>
+                
+                <h2 id="print-settings">Print Settings</h2>
+                <p>Optimal settings for FTC robot parts.</p>
+                <h3>Material Selection</h3>
+                <ul>
+                    <li><strong>PLA:</strong> Easy to print, rigid, but brittle. Good for prototypes</li>
+                    <li><strong>PETG:</strong> Best all-around. Strong, flexible, impact-resistant</li>
+                    <li><strong>ABS:</strong> Very strong, but harder to print. Requires enclosure</li>
+                    <li><strong>Nylon:</strong> Extremely tough, but needs dry storage</li>
+                </ul>
+                <h3>Recommended Settings</h3>
+                <pre><code>Layer Height: 0.2mm (0.12mm for detailed parts)
+Infill: 25-40% (gyroid or cubic pattern)
+Perimeters: 4-6 walls for strength
+Top/Bottom Layers: 5-6 layers
+Print Speed: 40-60 mm/s for strength
+Temperature: Follow material guidelines</code></pre>
+                <h3>Orientation</h3>
+                <p>Orient parts on the build plate for maximum strength:</p>
+                <ul>
+                    <li>Position load direction parallel to layer lines</li>
+                    <li>Avoid thin features perpendicular to build plate</li>
+                    <li>Minimize support material usage</li>
+                </ul>
+                
+                <h2 id="post-processing">Post-Processing</h2>
+                <p>Improve fit and finish of your printed parts.</p>
+                <h3>Cleaning Up Prints</h3>
+                <ol>
+                    <li><strong>Support Removal:</strong> Use pliers to carefully remove support material</li>
+                    <li><strong>Deburring:</strong> Use hobby knife to clean up rough edges</li>
+                    <li><strong>Hole Drilling:</strong> Drill out holes to exact size with drill bit</li>
+                    <li><strong>Sanding:</strong> Sand surfaces smooth with 220-400 grit</li>
+                </ol>
+                <h3>Heat-Set Inserts</h3>
+                <p>Add threaded inserts for robust fastening:</p>
+                <pre><code>1. Design hole 0.1mm under insert outer diameter
+2. Heat soldering iron to 200-220°C
+3. Place insert on hole
+4. Apply gentle pressure while heating
+5. Let cool completely before using</code></pre>
+                <h3>Annealing (Advanced)</h3>
+                <p>Heat treat prints to increase strength:</p>
+                <ul>
+                    <li>PLA: 60°C for 1 hour in oven</li>
+                    <li>PETG: Not recommended (deforms easily)</li>
+                    <li>Note: Parts will shrink 1-2% and may warp</li>
+                </ul>
+                <div class="note">
+                    <strong>Safety Tip:</strong> Always print in a well-ventilated area and avoid touching the nozzle or heated bed.
+                </div>
+            `,
+            'cad-common-mistakes': `
+                <h1>Common CAD Mistakes</h1>
+                <p>Avoid these frequent CAD errors to save time and build a better robot.</p>
+                
+                <h2 id="overview">Overview</h2>
+                <p>Learning from common mistakes will help you design more effective robots faster.</p>
+                <h3>Why CAD Mistakes Are Costly</h3>
+                <ul>
+                    <li>Wasted material from incorrect parts</li>
+                    <li>Time lost redesigning and remanufacturing</li>
+                    <li>Assembly issues on competition day</li>
+                    <li>Robot performance problems</li>
+                </ul>
+                <div class="note">
+                    <strong>Golden Rule:</strong> Measure twice (in CAD), cut once!
+                </div>
+                
+                <h2 id="clearance-issues">Clearance Issues</h2>
+                <p>Insufficient clearance is the most common CAD mistake.</p>
+                <h3>Motor to Structure</h3>
+                <p>Motors need breathing room:</p>
+                <pre><code>// Common mistake
+Motor OD: 1.5"
+Designed spacing: 1.5" ❌
+
+// Correct approach  
+Motor OD: 1.5"
+Minimum spacing: 1.6" (0.1" clearance) ✓
+Recommended: 1.75" (wire routing space) ✓</code></pre>
+                <h3>Rotating Parts</h3>
+                <ul>
+                    <li><strong>Gears:</strong> Add 0.02" minimum clearance between gear teeth</li>
+                    <li><strong>Wheels:</strong> Add 0.1" clearance to frame on each side</li>
+                    <li><strong>Arms/Linkages:</strong> Check full range of motion, add 0.125" clearance</li>
+                </ul>
+                <h3>Fastener Clearance</h3>
+                <p>Don't forget about screw heads and nuts:</p>
+                <ul>
+                    <li>Socket head screws need depth for hex key access</li>
+                    <li>Locknut thickness varies (nylon vs. all-metal)</li>
+                    <li>Washers add 0.065" thickness</li>
+                    <li>Allow wrench clearance for tightening</li>
+                </ul>
+                
+                <h2 id="structural-weaknesses">Structural Weaknesses</h2>
+                <p>Design for strength from the start.</p>
+                <h3>Thin Walls</h3>
+                <p>Walls that are too thin will flex or break:</p>
+                <ul>
+                    <li><strong>Aluminum:</strong> Minimum 1/8" thickness for structure</li>
+                    <li><strong>Polycarbonate:</strong> 1/4" minimum for rigidity</li>
+                    <li><strong>3D Printed:</strong> 3mm walls minimum for FDM</li>
+                </ul>
+                <h3>Stress Concentrations</h3>
+                <p>Sharp corners create weak points:</p>
+                <ul>
+                    <li>Always add fillets to inside corners (0.0625" radius minimum)</li>
+                    <li>Avoid rectangular holes in high-stress areas</li>
+                    <li>Use gussets to reinforce L-brackets</li>
+                    <li>Spread loads across multiple fasteners</li>
+                </ul>
+                <h3>Cantilever Lengths</h3>
+                <pre><code>// Rule of thumb for cantilevers
+Maximum unsupported length = 10 × thickness
+
+Example:
+1/8" aluminum plate → 1.25" max overhang
+1/4" aluminum plate → 2.5" max overhang</code></pre>
+                
+                <h2 id="assembly-problems">Assembly Problems</h2>
+                <p>Design parts that are actually buildable!</p>
+                <h3>Trapped Fasteners</h3>
+                <p>The most frustrating CAD mistake:</p>
+                <ul>
+                    <li>Can't access screw head after assembly</li>
+                    <li>Nut spinner won't fit in tight space</li>
+                    <li>Need to disassemble entire robot to reach one screw</li>
+                </ul>
+                <p><strong>Solution:</strong> Model assembly sequence and check tool access at each step.</p>
+                <h3>Hole Misalignment</h3>
+                <p>Holes that don't line up waste time and material:</p>
+                <ul>
+                    <li>Use mating features in Onshape to link hole patterns</li>
+                    <li>Create hole patterns in a single sketch, then share</li>
+                    <li>Use linear patterns instead of copying holes individually</li>
+                    <li>Add chamfers to hole edges for easier screw alignment</li>
+                </ul>
+                <h3>Over-Constrained Assemblies</h3>
+                <p>Too many mates can cause problems:</p>
+                <ul>
+                    <li>Parts won't insert during actual assembly</li>
+                    <li>Thermal expansion causes binding</li>
+                    <li>Manufacturing tolerances prevent fit</li>
+                </ul>
+                <p><strong>Solution:</strong> Leave some degrees of freedom. Use slots instead of round holes where appropriate.</p>
+                <div class="note">
+                    <strong>Pro Tip:</strong> Do a virtual assembly in CAD before building. If it's hard in CAD, it'll be harder in real life!
+                </div>
+                <h3>Forgetting Wire Routing</h3>
+                <p>Wires need somewhere to go:</p>
+                <ul>
+                    <li>Add 0.25" spacing for wire bundles</li>
+                    <li>Model approximate wire paths in assembly</li>
+                    <li>Leave access panels for wire management</li>
+                    <li>Avoid pinch points where wires cross moving parts</li>
+                </ul>
+            `,
+            ftclib: `
+                <h1>FTCLib</h1>
+                <p>FTCLib is a powerful library that simplifies FTC robot programming with clean, reusable code patterns.</p>
+                
+                <h2 id="introduction">Introduction</h2>
+                <p>FTCLib brings modern programming concepts to FTC, making your code more maintainable and easier to understand.</p>
+                <h3>Why Use FTCLib?</h3>
+                <ul>
+                    <li><strong>Command-Based Programming:</strong> Organize code into reusable commands</li>
+                    <li><strong>Built-in Utilities:</strong> Pre-made controllers, odometry, and more</li>
+                    <li><strong>Better Code Structure:</strong> Separate robot logic from hardware</li>
+                    <li><strong>Active Community:</strong> Extensive documentation and support</li>
+                </ul>
+                
+                <h2 id="installation">Installation</h2>
+                <p>Add FTCLib to your FTC project in just a few steps.</p>
+                <h3>Using Gradle</h3>
+                <pre><code>// In your build.dependencies.gradle file
+dependencies {
+    implementation 'org.ftclib.ftclib:core:2.1.1'
+}</code></pre>
+                <h3>Sync Your Project</h3>
+                <ol>
+                    <li>Add the dependency to your gradle file</li>
+                    <li>Click "Sync Now" in Android Studio</li>
+                    <li>Wait for the sync to complete</li>
+                    <li>You're ready to use FTCLib!</li>
+                </ol>
+                <div class="note">
+                    <strong>Tip:</strong> Check the FTCLib documentation for the latest version number.
+                </div>
+                
+                <h2 id="command-based">Command-Based Programming</h2>
+                <p>The command-based paradigm organizes your code into subsystems and commands.</p>
+                <h3>Basic Structure</h3>
+                <pre><code>// Subsystem - represents a part of your robot
+public class DriveSubsystem extends SubsystemBase {
+    private Motor leftMotor, rightMotor;
+    
+    public void drive(double left, double right) {
+        leftMotor.set(left);
+        rightMotor.set(right);
+    }
+}</code></pre>
+                <h3>Creating Commands</h3>
+                <pre><code>// Command - actions your robot performs
+public class DriveCommand extends CommandBase {
+    private DriveSubsystem drive;
+    private DoubleSupplier leftSpeed, rightSpeed;
+    
+    public DriveCommand(DriveSubsystem drive, 
+                       DoubleSupplier left, 
+                       DoubleSupplier right) {
+        this.drive = drive;
+        this.leftSpeed = left;
+        this.rightSpeed = right;
+        addRequirements(drive);
+    }
+    
+    @Override
+    public void execute() {
+        drive.drive(leftSpeed.getAsDouble(), 
+                   rightSpeed.getAsDouble());
+    }
+}</code></pre>
+                
+                <h2 id="subsystems">Subsystems</h2>
+                <p>Subsystems represent physical parts of your robot and encapsulate their behavior.</p>
+                <h3>Best Practices</h3>
+                <ul>
+                    <li>One subsystem per mechanism (drivetrain, intake, lift, etc.)</li>
+                    <li>Keep hardware declarations private</li>
+                    <li>Provide public methods for commands to use</li>
+                    <li>Use telemetry in subsystems for debugging</li>
+                </ul>
+                <h3>Example: Intake Subsystem</h3>
+                <pre><code>public class IntakeSubsystem extends SubsystemBase {
+    private final Motor intakeMotor;
+    
+    public IntakeSubsystem(HardwareMap hardwareMap) {
+        intakeMotor = new Motor(hardwareMap, "intake");
+    }
+    
+    public void intake() {
+        intakeMotor.set(1.0);
+    }
+    
+    public void outtake() {
+        intakeMotor.set(-1.0);
+    }
+    
+    public void stop() {
+        intakeMotor.set(0);
+    }
+}</code></pre>
+            `,
+            github: `
+                <h1>GitHub & Version Control</h1>
+                <p>Learn to use Git and GitHub for team collaboration and code management.</p>
+                
+                <h2 id="basics">Git Basics</h2>
+                <p>Git is a version control system that tracks changes to your code.</p>
+                <h3>Why Use Git?</h3>
+                <ul>
+                    <li>Track all changes to your code</li>
+                    <li>Collaborate without overwriting each other's work</li>
+                    <li>Revert to previous versions if something breaks</li>
+                    <li>Work on features independently with branches</li>
+                </ul>
+                <h3>Essential Git Commands</h3>
+                <pre><code># Clone a repository
+git clone https://github.com/team/repo.git
+
+# Check status of your changes
+git status
+
+# Stage changes for commit
+git add .
+
+# Commit changes
+git commit -m "Added intake subsystem"
+
+# Push to GitHub
+git push origin main
+
+# Pull latest changes
+git pull</code></pre>
+                
+                <h2 id="workflow">Team Workflow</h2>
+                <p>Establish a workflow that prevents conflicts and keeps code organized.</p>
+                <h3>Feature Branch Workflow</h3>
+                <ol>
+                    <li><strong>Create a branch</strong> for your feature
+                        <pre><code>git checkout -b feature/autonomous-path</code></pre>
+                    </li>
+                    <li><strong>Make your changes</strong> and test thoroughly</li>
+                    <li><strong>Commit frequently</strong> with descriptive messages</li>
+                    <li><strong>Push your branch</strong> to GitHub
+                        <pre><code>git push origin feature/autonomous-path</code></pre>
+                    </li>
+                    <li><strong>Create a pull request</strong> for code review</li>
+                    <li><strong>Merge</strong> after approval</li>
+                </ol>
+                
+                <h2 id="collaboration">Collaboration</h2>
+                <p>Work effectively with your team on the same codebase.</p>
+                <h3>Pull Requests</h3>
+                <p>Always use pull requests for major changes:</p>
+                <ul>
+                    <li>Describe what your code does</li>
+                    <li>Tag team members for review</li>
+                    <li>Address feedback before merging</li>
+                    <li>Test thoroughly before requesting merge</li>
+                </ul>
+                <h3>Commit Message Guidelines</h3>
+                <pre><code>✓ Good commits:
+"Added PID controller to drivetrain"
+"Fixed autonomous red side bug"
+"Refactored intake subsystem"
+
+✗ Bad commits:
+"updated stuff"
+"fixes"
+"asdf"</code></pre>
+                <div class="note">
+                    <strong>Pro Tip:</strong> Pull before you start working each day to avoid merge conflicts!
+                </div>
+                
+                <h2 id="troubleshooting">Troubleshooting</h2>
+                <p>Common Git issues and how to solve them.</p>
+                <h3>Merge Conflicts</h3>
+                <p>When two people edit the same code:</p>
+                <ol>
+                    <li>Git will mark conflicts in your files</li>
+                    <li>Open the file and look for <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> markers</li>
+                    <li>Decide which changes to keep</li>
+                    <li>Remove conflict markers</li>
+                    <li>Commit the resolved file</li>
+                </ol>
+                <h3>Accidentally Committed to Wrong Branch</h3>
+                <pre><code># Undo last commit but keep changes
+git reset --soft HEAD~1
+
+# Switch to correct branch
+git checkout correct-branch
+
+# Commit again
+git commit -m "Your message"</code></pre>
+            `,
+            roadrunner: `
+                <h1>RoadRunner Autonomous</h1>
+                <p>RoadRunner is a motion planning library for accurate and smooth autonomous paths.</p>
+                
+                <h2 id="overview">Overview</h2>
+                <p>RoadRunner generates smooth, followable paths using advanced motion profiling.</p>
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Spline-based path following</li>
+                    <li>Automatic velocity profiling</li>
+                    <li>Accurate dead reckoning with wheel odometry</li>
+                    <li>Easy-to-use trajectory builder API</li>
+                </ul>
+                <h3>When to Use RoadRunner</h3>
+                <p>RoadRunner excels at:</p>
+                <ul>
+                    <li>Complex autonomous paths with curves</li>
+                    <li>High-speed movements requiring precise control</li>
+                    <li>Paths that need to be smooth and repeatable</li>
+                </ul>
+                
+                <h2 id="setup">Setup</h2>
+                <p>Install and configure RoadRunner for your robot.</p>
+                <h3>Installation</h3>
+                <pre><code>// In build.dependencies.gradle
+dependencies {
+    implementation 'com.acmerobotics.roadrunner:core:0.5.6'
+}</code></pre>
+                <h3>Configuration</h3>
+                <p>Key constants to tune for your robot:</p>
+                <ul>
+                    <li><strong>Track Width:</strong> Distance between left and right wheels</li>
+                    <li><strong>Wheel Base:</strong> Distance between front and back wheels</li>
+                    <li><strong>Max Velocity:</strong> Fastest your robot can travel</li>
+                    <li><strong>Max Acceleration:</strong> How quickly robot can speed up</li>
+                </ul>
+                <div class="note">
+                    <strong>Important:</strong> Use the RoadRunner tuning opmodes to find accurate values for your robot!
+                </div>
+                
+                <h2 id="path-building">Building Paths</h2>
+                <p>Create autonomous paths using the trajectory builder.</p>
+                <h3>Basic Trajectory</h3>
+                <pre><code>Trajectory myTrajectory = drive.trajectoryBuilder(startPose)
+    .forward(40)
+    .turn(Math.toRadians(90))
+    .forward(20)
+    .build();
+
+// Follow the trajectory
+drive.followTrajectory(myTrajectory);</code></pre>
+                <h3>Spline Paths</h3>
+                <pre><code>// Smooth curve to target
+Trajectory splineTrajectory = drive.trajectoryBuilder(startPose)
+    .splineTo(new Vector2d(40, 40), Math.toRadians(0))
+    .splineTo(new Vector2d(60, 0), Math.toRadians(-90))
+    .build();</code></pre>
+                <h3>Combining Actions</h3>
+                <pre><code>// Move while running mechanisms
+drive.followTrajectoryAsync(trajectory1);
+while (drive.isBusy()) {
+    // Run intake while moving
+    intake.setPower(1.0);
+    drive.update();
+}</code></pre>
+                
+                <h2 id="tuning">Tuning</h2>
+                <p>Optimize RoadRunner for your specific robot.</p>
+                <h3>Tuning Process</h3>
+                <ol>
+                    <li><strong>Measure physical constants:</strong> Track width, wheel diameter</li>
+                    <li><strong>Run DriveVelocityPIDTuner:</strong> Tune motor velocities</li>
+                    <li><strong>Run StraightTest:</strong> Verify straight line accuracy</li>
+                    <li><strong>Run TrackWidthTuner:</strong> Get accurate track width</li>
+                    <li><strong>Run FollowerPIDTuner:</strong> Tune path following</li>
+                    <li><strong>Run SplineTest:</strong> Verify smooth curves</li>
+                </ol>
+                <h3>Common Tuning Issues</h3>
+                <ul>
+                    <li><strong>Robot drifts on straight lines:</strong> Re-tune track width</li>
+                    <li><strong>Oscillates on paths:</strong> Lower PID gains</li>
+                    <li><strong>Doesn't reach target:</strong> Check max velocity/acceleration</li>
+                    <li><strong>Jerky movement:</strong> Increase motion profile resolution</li>
+                </ul>
+            `,
+            drivetrain: `
                 <h1>Introduction</h1>
                 <p>Welcome to our comprehensive documentation. This guide will help you understand and use all features of our software effectively.</p>
                 <h2>What is this software?</h2>
@@ -595,6 +1508,84 @@ Space     - Play/Pause</code></pre>
                     <li>Ambient Occlusion</li>
                 </ul>
             `,
+            api: `
+                <h1>API Reference</h1>
+                <p>The API provides programmatic access to all software features.</p>
+                
+                <h2 id="overview">Overview</h2>
+                <p>Our API allows you to automate workflows, create plugins, and integrate with other tools.</p>
+                <h3>Getting Started</h3>
+                <pre><code>import api from 'our-software-api';
+
+const app = new api.Application();
+app.init();
+
+// Create a new scene
+const scene = app.createScene();</code></pre>
+                <h3>Authentication</h3>
+                <p>API calls require authentication using an API key:</p>
+                <pre><code>api.authenticate('your-api-key-here');</code></pre>
+                
+                <h2 id="functions">Functions</h2>
+                <p>Reference guide for all available API functions.</p>
+                <h3>Core Functions</h3>
+                <pre><code>// Create objects
+api.create(type, options)
+
+// Delete objects
+api.delete(id)
+
+// Update object properties
+api.update(id, properties)
+
+// Render scene
+api.render(settings)
+
+// Export data
+api.export(format, options)</code></pre>
+                <h3>Scene Management</h3>
+                <pre><code>// Load a scene
+api.loadScene('path/to/scene.json')
+
+// Save current scene
+api.saveScene('path/to/output.json')
+
+// Clear scene
+api.clearScene()</code></pre>
+                
+                <h2 id="classes">Classes</h2>
+                <p>Object-oriented interface for complex operations.</p>
+                <h3>Main Classes</h3>
+                <ul>
+                    <li><strong>Scene:</strong> Manages the 3D scene and all objects within it</li>
+                    <li><strong>Object:</strong> Base class for all 3D objects</li>
+                    <li><strong>Camera:</strong> Controls viewport and rendering perspective</li>
+                    <li><strong>Light:</strong> Handles lighting in the scene</li>
+                    <li><strong>Material:</strong> Defines surface properties</li>
+                </ul>
+                <h3>Example Usage</h3>
+                <pre><code>// Create a scene
+const scene = new api.Scene();
+
+// Add a camera
+const camera = new api.Camera({
+    position: [0, 0, 10],
+    target: [0, 0, 0]
+});
+scene.add(camera);
+
+// Create an object
+const cube = new api.Object.Cube({
+    size: 2,
+    material: new api.Material({
+        color: '#ff0000'
+    })
+});
+scene.add(cube);
+
+// Render
+scene.render();</code></pre>
+            `
         };
 
         function loadContentWithSection(page, section = null) {
@@ -604,9 +1595,13 @@ Space     - Play/Pause</code></pre>
             if (contentPages[page]) {
                 content.innerHTML = contentPages[page];
                 
-                // Update active state for parent
-                document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+                // Clear all active states first
+                document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
+                });
+                
+                // Update active state for parent only
+                document.querySelectorAll('.nav-link[data-page]').forEach(link => {
                     if (link.dataset.page === page) {
                         link.classList.add('active');
                         
@@ -635,6 +1630,10 @@ Space     - Play/Pause</code></pre>
         }
 
         function loadContent(page) {
+            // Clear all subsection highlights when loading a page without sections
+            document.querySelectorAll('.submenu .nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
             loadContentWithSection(page);
         }
 
@@ -702,6 +1701,48 @@ Space     - Play/Pause</code></pre>
                 sidebar.classList.remove('open');
             }
         });
+
+        // Scroll spy - detect which section is currently visible
+        let isScrolling = false;
+        const contentElement = document.getElementById('content');
+        
+        contentElement.addEventListener('scroll', function() {
+            if (isScrolling) return;
+            
+            isScrolling = true;
+            setTimeout(() => {
+                updateActiveSection();
+                isScrolling = false;
+            }, 100);
+        });
+
+        function updateActiveSection() {
+            const sections = contentElement.querySelectorAll('h2[id]');
+            const scrollPosition = contentElement.scrollTop + 150; // Offset for better detection
+
+            let currentSection = null;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSection = section.id;
+                } else if (scrollPosition >= sectionTop) {
+                    currentSection = section.id; // Keep updating to the last passed section
+                }
+            });
+
+            if (currentSection) {
+                // Update active state for submenu items
+                document.querySelectorAll('.submenu .nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.section === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
     </script>
 </body>
 </html>
